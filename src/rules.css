@@ -1,0 +1,710 @@
+/* 🔶 Dialog inside dialog */
+dialog dialog,
+.modal dialog,
+.dialog dialog {
+  outline: 2px solid orange;
+}
+
+/* 🔶 Panel inside panel */
+.panel .panel,
+aside aside,
+.section .section {
+  outline: 2px solid orange;
+}
+
+/* 🔶 Accordion inside accordion */
+.accordion .accordion {
+  outline: 2px solid orange;
+}
+
+/* 🔶 Tabs inside tabs */
+.tabs .tabs,
+.tablist .tablist {
+  outline: 2px solid orange;
+}
+
+/* 🔶 Carousel inside carousel */
+.carousel .carousel {
+  outline: 2px solid orange;
+}
+
+/* 🔶 Scrollable inside scrollable */
+[style*="overflow: auto"] [style*="overflow: auto"],
+.scrollable .scrollable {
+  outline: 2px solid orange;
+}
+
+/* 🔶 Sticky inside sticky */
+.sticky .sticky,
+[style*="position: sticky"] [style*="position: sticky"] {
+  outline: 2px solid orange;
+}
+
+/* 🔶 Excessive z-index */
+*[style*="z-index: 9999"],
+*[style*="z-index: 10000"] {
+  outline: 2px dashed orange;
+}
+
+/* 🔶 Too small click targets */
+button,
+a,
+input[type="button"],
+input[type="submit"] {
+  min-width: 44px;
+  min-height: 44px;
+}
+button:not(:hover):not(:focus):not(:active):not(:disabled):where(:not([style*="min-width"])) {
+  background-color: orange !important;
+}
+
+/* 🔶 Elements with !important (cannot be detected via CSS, needs JS auditing) */
+
+/* 🔶 No focus outline */
+*:focus {
+  outline: 2px dashed orange !important;
+}
+
+/* 🔶 Overly deep selectors (not detectable directly, but we can check nesting depth via JS if needed) */
+
+div:empty, span:empty,
+li:empty, p:empty,
+td:empty, th:empty {padding: 0.5em; background: yellow;}
+
+*[style], font, center {outline: 5px solid red;}
+*[class=""], *[id=""] {outline: 5px dotted red;}
+
+img[alt=""] {border: 3px dotted red;}
+img:not([alt]) {border: 5px solid red;}
+img[title=""] {outline: 3px dotted fuchsia;}
+img:not([title]) {outline: 5px solid fuchsia;}
+
+table:not([summary]) {outline: 5px solid red;}
+table[summary=""] {outline: 3px dotted red;}
+th {border: 2px solid red;}
+th[scope="col"], th[scope="row"] {border: none;}
+
+a[href]:not([title]) {border: 5px solid red;}
+a[title=""] {outline: 3px dotted red;}
+a[href="#"] {background: lime;}
+a[href=""] {background: fuchsia;}
+
+
+/* 🔶 Avoid fixed heights on text containers (can cause overflow/clipping) */
+p[style*="height:"],
+div[style*="height:"],
+span[style*="height:"] {
+    outline: 2px dashed #b22222 !important;
+    background: rgba(178,34,34,0.1) !important;
+}
+
+/* 🔶 Avoid using px for font-size on body/html (prefer rem/em for scalability) */
+html[style*="font-size:px"],
+body[style*="font-size:px"] {
+    outline: 2px dashed #8b0000 !important;
+    background: rgba(139,0,0,0.1) !important;
+}
+
+/* 🔶 Avoid !important in production styles (except for diagnostics/debug) */
+*[style*="!important"] {
+    outline: 2px dotted #ff8c00 !important;
+    background: rgba(255,140,0,0.1) !important;
+}
+
+/* 🔶 Avoid inline styles for layout (prefer CSS classes) */
+*[style*="margin"], *[style*="padding"], *[style*="float"], *[style*="position"] {
+    outline: 1px dashed #4682b4 !important;
+}
+
+/* 🔶 Avoid using tabindex greater than 0 (prefer natural tab order) */
+*[tabindex]:not([tabindex="0"]):not([tabindex="-1"]) {
+    outline: 2px solid #9932cc !important;
+    background: rgba(153,50,204,0.1) !important;
+}
+
+/* 🔶 Avoid using autofocus on multiple elements */
+[autofocus] + [autofocus] {
+    outline: 2px solid #ff1493 !important;
+    background: rgba(255,20,147,0.1) !important;
+}
+
+/* 🔶 Avoid using deprecated HTML elements for layout */
+marquee, blink, bgsound {
+    outline: 3px solid #ff4500 !important;
+    background: rgba(255,69,0,0.1) !important;
+}
+
+/* 🔶 Avoid using <br> for spacing/layout */
+br + br {
+    outline: 2px dashed #2e8b57 !important;
+    background: rgba(46,139,87,0.1) !important;
+}
+
+/* 🔶 Avoid using negative tabindex (except for focus management) */
+*[tabindex="-1"] {
+    outline: 2px dotted #1e90ff !important;
+}
+/* 🔶 Avoid using inline event handlers (onclick, onmouseover, etc.) */
+*[onclick], *[onmouseover], *[onmouseout], *[onchange], *[onsubmit], *[onfocus], *[onblur] {
+    outline: 2px dashed #daa520 !important;
+    background: rgba(218,165,32,0.1) !important;
+}
+
+/* 🔶 Avoid using <font> tag for styling */
+font {
+    outline: 3px solid #a0522d !important;
+    background: rgba(160,82,45,0.1) !important;
+}
+
+/* 🔶 Avoid using <center> tag for alignment */
+center {
+    outline: 3px solid #4682b4 !important;
+    background: rgba(70,130,180,0.1) !important;
+}
+
+/* 🔶 Avoid using <b> and <i> for semantic emphasis (prefer <strong> and <em>) */
+b, i {
+    outline: 2px dashed #8b008b !important;
+    background: rgba(139,0,139,0.1) !important;
+}
+
+/* 🔶 Avoid using <u> for underlining (use CSS for decoration) */
+u {
+    outline: 2px dashed #ff6347 !important;
+    background: rgba(255,99,71,0.1) !important;
+}
+
+/* 🔶 Avoid using <hr> for visual separation (prefer CSS borders/margins) */
+hr {
+    outline: 2px dashed #20b2aa !important;
+    background: rgba(32,178,170,0.1) !important;
+}
+
+/* 🔶 Avoid using <small> for legal/disclaimer text (use ARIA or CSS for context) */
+small {
+    outline: 2px dashed #b8860b !important;
+    background: rgba(184,134,11,0.1) !important;
+}
+
+/* 🔶 Avoid using <sub> and <sup> for layout (use only for actual sub/superscript) */
+sub, sup {
+    outline: 2px dashed #7b68ee !important;
+    background: rgba(123,104,238,0.1) !important;
+}
+
+/* 🔶 Avoid using <table> for layout (use only for tabular data) */
+table[role="presentation"], table.layout, table[style*="width"], table[style*="height"] {
+    outline: 3px solid #dc143c !important;
+    background: rgba(220,20,60,0.1) !important;
+}
+
+/* 🔶 Avoid using <img> for decorative images without alt="" */
+img[role="presentation"]:not([alt=""]) {
+    outline: 2px solid #00ced1 !important;
+    background: rgba(0,206,209,0.1) !important;
+}
+
+/* 🔶 Avoid using <marquee> and <blink> for animation (deprecated) */
+marquee, blink {
+    outline: 3px solid #ff4500 !important;
+    background: rgba(255,69,0,0.1) !important;
+}
+
+/* 🔶 Avoid using <applet>, <basefont>, <isindex> (obsolete elements) */
+applet, basefont, isindex {
+    outline: 3px solid #8b0000 !important;
+    background: rgba(139,0,0,0.1) !important;
+}
+
+/* 🔶 Avoid using <dir> and <menu> for lists (use <ul>/<ol>) */
+dir, menu {
+    outline: 2px dashed #4682b4 !important;
+    background: rgba(70,130,180,0.1) !important;
+}
+
+/* 🔶 Avoid using <s>, <strike> for strikethrough (use <del> or CSS) */
+s, strike {
+    outline: 2px dashed #b22222 !important;
+    background: rgba(178,34,34,0.1) !important;
+}
+
+/* 🔶 Avoid using <input type="text"> for passwords (use type="password") */
+input[type="text"][name*="password" i] {
+    outline: 2px solid #ff1493 !important;
+    background: rgba(255,20,147,0.1) !important;
+}
+
+/* 🔶 Avoid using <input type="image"> for buttons (prefer <button> or <input type="submit">) */
+input[type="image"] {
+    outline: 2px dashed #4682b4 !important;
+    background: rgba(70,130,180,0.1) !important;
+}
+
+/* 🔶 Avoid using <br> for spacing (prefer CSS margin/padding) */
+br + br {
+    outline: 2px dashed #2e8b57 !important;
+    background: rgba(46,139,87,0.1) !important;
+}
+
+/* 🔶 Avoid using <a> without href (use <button> for actions) */
+a:not([href]) {
+    outline: 2px solid #ff8c00 !important;
+    background: rgba(255,140,0,0.1) !important;
+}
+
+/* 🔶 Avoid using <iframe> without title */
+iframe:not([title]) {
+    outline: 2px solid #9932cc !important;
+    background: rgba(153,50,204,0.1) !important;
+}
+
+/* 🔶 Avoid nesting buttons inside buttons (unless using ARIA for presentation) */
+button button:not([aria-hidden="true"]):not([aria-role="presentation"]),
+button > button:not([aria-hidden="true"]):not([aria-role="presentation"]) {
+    outline: 3px solid #ff4500 !important;
+    background: rgba(255, 69, 0, 0.2) !important;
+    position: relative;
+}
+button button:not([aria-hidden="true"]):not([aria-role="presentation"])::before,
+button > button:not([aria-hidden="true"]):not([aria-role="presentation"])::before {
+    content: "🚨 Button inside Button! 🚨";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ff4500;
+    color: #fff;
+    font-size: 0.8em;
+    padding: 2px 6px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+
+/* 1. There should not be a dialog inside a dialog */
+/* This targets direct nesting. More complex scenarios (e.g., dialog within a component that's in a dialog) would need JS. */
+[role="dialog"] [role="dialog"],
+[data-component="dialog"] [data-component="dialog"] {
+    background-color: rgba(255, 0, 0, 0.3) !important; /* Bright Red for critical issue */
+    outline: 2px solid red !important;
+    position: relative; /* To allow pseudo-element for label */
+}
+[role="dialog"] [role="dialog"]::before,
+[data-component="dialog"] [data-component="dialog"]::before {
+    content: '🚨 Dialog in Dialog! 🚨';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: red;
+    color: white;
+    padding: 2px 5px;
+    font-size: 0.8em;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+
+/* 2. There should not be a panel inside a panel */
+/* Assuming panels are identified by a class like 'panel' or a data attribute */
+.panel .panel,
+[data-component="panel"] [data-component="panel"] {
+    background-color: rgba(255, 69, 0, 0.3) !important; /* Orange-Red */
+    outline: 2px solid orangered !important;
+    position: relative;
+}
+.panel .panel::before,
+[data-component="panel"] [data-component="panel"]::before {
+    content: '🚨 Panel in Panel! 🚨';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: orangered;
+    color: white;
+    padding: 2px 5px;
+    font-size: 0.8em;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+/* 3. There should not be a tooltip inside a tooltip */
+.tooltip .tooltip,
+[data-component="tooltip"] [data-component="tooltip"] {
+    background-color: rgba(255, 99, 71, 0.3) !important; /* Tomato */
+    outline: 2px solid tomato !important;
+}
+
+/* 4. There should not be a dropdown inside a dropdown (unless explicitly for multi-level navigation). */
+/* This is harder to perfectly diagnose without context. Targets direct nesting. */
+.dropdown .dropdown,
+[data-component="dropdown"] [data-component="dropdown"] {
+    background-color: rgba(255, 140, 0, 0.3) !important; /* DarkOrange */
+    outline: 2px solid darkorange !important;
+}
+
+/* 5. There should not be a scrollbar inside an already scrolling area unless absolutely necessary for a distinct content block. */
+/* This is very difficult for CSS to perfectly diagnose.
+   This rule targets elements that are scrollable (have overflow:auto/scroll) inside another scrollable element.
+   It might have false positives if the inner scroll is intentional. */
+*:has(> *[style*="overflow:auto"], > *[style*="overflow:scroll"], > *[style*="overflow-y:auto"], > *[style*="overflow-y:scroll"]):has([style*="overflow:auto"], [style*="overflow:scroll"], [style*="overflow-y:auto"], [style*="overflow-y:scroll"]) {
+    background-color: rgba(255, 165, 0, 0.3) !important; /* Orange */
+    outline: 2px solid orange !important;
+}
+/* A more direct but less reliable way if you have explicit scroll classes: */
+.scrollable .scrollable { /* If you use a class like 'scrollable' */
+    background-color: rgba(255, 165, 0, 0.3) !important;
+    outline: 2px solid orange !important;
+}
+
+
+/* 6. There should not be an accordion inside an accordion. */
+.accordion .accordion,
+[data-component="accordion"] [data-component="accordion"] {
+    background-color: rgba(255, 215, 0, 0.3) !important; /* Gold */
+    outline: 2px solid gold !important;
+}
+
+/* 7. There should not be a tab set inside another tab set. */
+.tabs .tabs,
+[data-component="tabs"] [data-component="tabs"] {
+    background-color: rgba(184, 134, 11, 0.3) !important; /* DarkGoldenrod */
+    outline: 2px solid darkgoldenrod !important;
+}
+
+/* 8. There should not be an active hover state on an element that is already clicked/active. */
+/* This is hard for pure CSS to diagnose because :hover and :active are separate states.
+   A common issue is if an active element *also* visually changes on hover when it shouldn't.
+   This attempts to target active elements that also have a hover effect defined, but it's imperfect. */
+.active:hover,
+[aria-selected="true"]:hover,
+[aria-current="page"]:hover {
+    background-color: rgba(218, 165, 32, 0.3) !important; /* Goldenrod */
+    outline: 2px solid goldenrod !important;
+}
+/* More specific, if you have a class for active AND you know it applies a problematic hover */
+.my-active-button.my-hover-effect-class:hover {
+    background-color: rgba(218, 165, 32, 0.3) !important;
+    outline: 2px solid goldenrod !important;
+}
+
+
+/* 9. There should not be a clickable element too close to another unrelated clickable element. */
+/* CSS cannot measure proximity to unrelated elements or "clickability" perfectly.
+   This can only flag elements with common interactive roles that might be too small or too close
+   if combined with a very small padding/margin. This is an advanced case for JS/linters.
+   Example: If two buttons are side-by-side with minimal spacing. */
+button + button:has(+ button), /* Three buttons side-by-side */
+a[href] + a[href]:has(+ a[href]) {
+    /* This rule is very rough and likely to have false positives/negatives */
+    background-color: rgba(255, 99, 71, 0.3) !important; /* Tomato - less severe, more a warning */
+    outline: 1px dashed tomato !important;
+}
+/* If you have a class for small interactive elements that are usually problematic: */
+.small-clickable-item + .small-clickable-item {
+     background-color: rgba(255, 99, 71, 0.3) !important;
+     outline: 1px dashed tomato !important;
+}
+
+
+/* 10. There should not be a disabled element that still shows a hover state. */
+/* This checks for a disabled attribute combined with a hover state that might indicate styling issues. */
+[disabled]:hover {
+    background-color: rgba(205, 92, 92, 0.3) !important; /* IndianRed */
+    outline: 2px solid indianred !important;
+}
+
+/* 11. There should not be a loading indicator that disappears too quickly to be noticed. */
+/* CSS cannot diagnose this directly. This is a JavaScript timing issue. */
+/* You could, however, style a loading indicator if it's visually broken (e.g., too small) */
+.loading-indicator:not([aria-hidden="true"]):empty {
+    /* If your loading indicator is empty but visible, it might be broken */
+    background-color: rgba(178, 34, 34, 0.3) !important; /* Firebrick */
+    outline: 2px dashed firebrick !important;
+}
+
+
+
+
+/* Simpler for fixed-height/width text with overflow:hidden and no ellipsis */
+p[style*="overflow:hidden"]:not([style*="text-overflow:ellipsis"]),
+span[style*="overflow:hidden"]:not([style*="text-overflow:ellipsis"]) {
+    background-color: rgba(220, 20, 60, 0.3) !important; /* Crimson */
+    outline: 1px dashed crimson !important;
+}
+
+
+/* 13. There should not be an excessive number of primary navigation items. */
+/* Pure CSS cannot count 'excessive'. This is a design decision.
+   You *could* flag if, for example, a nav bar has more than X children. */
+nav.primary-nav > ul > li:nth-child(8) { /* Flags the 8th item and beyond */
+    background-color: rgba(139, 0, 0, 0.3) !important; /* DarkRed */
+    outline: 2px dashed darkred !important;
+}
+/* This needs to be adjusted based on your 'excessive' threshold. */
+
+
+/* 14. There should not be redundant information presented in multiple places simultaneously. */
+/* Impossible for CSS to detect semantic redundancy. This requires human review or advanced tooling. */
+
+/* 15. There should not be essential actions hidden only behind a long scroll. */
+/* Impossible for CSS to detect 'essential actions' or 'long scroll' contextually. This is a UX review. */
+/* You *could* flag elements that are very far down if they have specific classes. */
+.long-page-footer .important-action { /* If you have very long pages */
+    background-color: rgba(100, 149, 237, 0.3) !important; /* CornflowerBlue - warning, not error */
+    outline: 1px dashed cornflowerblue !important;
+}
+
+
+/* 16. There should not be a disproportionate amount of whitespace that pushes crucial content off-screen. */
+/* CSS cannot measure 'disproportionate' or 'crucial content'.
+   You can flag very large paddings/margins on elements if they seem out of place. */
+*:where([style*="padding: 100px"], [style*="margin: 100px"]) {
+    background-color: rgba(173, 216, 230, 0.3) !important; /* LightBlue - subtle warning */
+    outline: 1px dashed lightblue !important;
+}
+
+/* 17. There should not be different styles for the same interactive element (e.g., buttons) across different parts of the application. */
+/* Impossible for CSS to detect inconsistency across the entire application without knowing the intended consistent style.
+   You would need a linter or visual regression testing. */
+
+/* 18. There should not be an unexpected change in layout or element position upon interaction. */
+/* Impossible for CSS to detect 'unexpected changes'. This requires observing behavior. */
+
+/* 19. There should not be a visual cue that implies interactivity when there is none. */
+/* E.g., a non-link that looks like a link (blue, underlined). */
+*:not(a):not(button):not(input[type="button"]):not(input[type="submit"]):not([role="button"]):not([tabindex="0"]):where([style*="text-decoration: underline"], [style*="color: blue"]) {
+    background-color: rgba(255, 255, 0, 0.3) !important; /* Yellow for warning */
+    outline: 1px dashed yellow !important;
+}
+
+/* 20. There should not be a color contrast ratio that makes text unreadable. */
+/* CSS cannot calculate contrast ratios. This requires accessibility tools (browser dev tools, Lighthouse). */
+/* You could, very broadly, flag text on a background that uses *similar* hues, but it's not reliable. */
+*:where([style*="color: #F00"], [style*="background-color: #F88"]) {
+    /* Example: red text on light red background. This is highly specific and unreliable. */
+    background-color: rgba(255, 0, 255, 0.3) !important; /* Magenta */
+    outline: 2px dotted magenta !important;
+}
+
+/* 21. There should not be reliance solely on color to convey information. */
+/* Impossible for CSS. This is a semantic/design principle. */
+
+
+/* General diagnostic for elements that might be hidden but are structurally present when they shouldn't be */
+*:where([aria-hidden="true"]:not(svg), [style*="display: none"], [style*="visibility: hidden"]) {
+    /* If you find a hidden element you didn't expect, this can highlight it */
+    outline: 1px dotted rgba(0, 0, 255, 0.5) !important; /* Blue dotted outline */
+}
+
+applet:after, basefont:after, center:after, dir:after, font:after, isindex:after, menu:after, s:after, strike:after, u:after, 
+*[background]:after, *[bgcolor]:after, *[clear]:after, *[color]:after, *[compact]:after, *[noshade]:after, *[nowrap]:after, *[size]:after, 
+*[start]:after, *[bottommargin]:after, *[leftmargin]:after, *[rightmargin]:after, *[topmargin]:after, *[marginheight]:after, *[marginwidth]:after, 
+*[alink]:after, *[link]:after, *[text]:after, *[vlink]:after, *[align]:after, *[valign]:after, *[hspace]:after, *[vspace]:after, *[height]:after, 
+*[width]:after, ul[type]:after, ol[type]:after, li[type]:after, iframe:not([title]):after, img[ismap]:after, img:not([alt]):after, 
+div[role="img"]:not([aria-label]):after, img:not([src]):after,img[src=""]:after, img[src="#"]:after, a[href=""]:after, a[href="#"]:after, 
+a:not([href]):after, a[href*=javascript\:]:after, a[onclick]:after, fieldset > :not(legend):first-child:after, fieldset > legend:not(:first-child):after, 
+input[type="image"][alt=""]:after, input[type="image"]:not([alt]):after, [dir]:not([dir="rtl"]):not([dir="ltr"]):after, 
+meta[http-equiv=refresh]:after, html:not([lang]):after, *[accesskey]:after, th:empty:after, table > tr:only-child:after, table > tbody > tr:only-child:after,  
+table[align]:after, table[bgcolor]:after, table[border]:after, table[cellpadding]:after,table[cellspacing]:after,table[width]:after, td[width]:after,
+td[valign]:after, title:empty:after, ol > *:not(li):after, ul > *:not(li):after, dl > *:not(dt):not(dd):after, dt + *:not(dd):after, th > table:after, 
+td > table:after, body > table:first-child:after, p b:only-child:after, p strong:only-child:after, ol[type]:after, ul[type]:after, area:not([alt]):after,
+table table:after
+{
+   display: inline-block !important;
+   background: #dc143c !important;
+   padding: 0.25em !important;
+   font-family: 'comic sans ms', cursive !important;
+   color: #fff !important;
+   font-size: 14px !important;
+   text-shadow: none !important;
+   font-weight: normal !important;
+   font-style: normal !important;
+}
+
+/* Deprecated Elements - cannot be overridden by user styles */
+applet:after, basefont:after, center:after, dir:after, font:after, isindex:after, menu:after, s:after, strike:after, u:after {
+    content: 'ERROR: Deprecated elements found. They cannot be overridden by user styles' !important;
+}
+
+/* Deprecated Attributes - should not be used anymore */
+*[background]:after, *[bgcolor]:after, *[clear]:after, *[color]:after, *[compact]:after, *[noshade]:after, *[nowrap]:after, *[size]:after, 
+*[start]:after, *[bottommargin]:after, *[leftmargin]:after, *[rightmargin]:after, *[topmargin]:after, *[marginheight]:after, *[marginwidth]:after, 
+*[alink]:after, *[link]:after, *[text]:after, *[vlink]:after, *[align]:after, *[valign]:after, *[hspace]:after, *[vspace]:after, *[height]:after, 
+*[width]:after, ul[type]:after, ol[type]:after, li[type]:after {
+    content: 'ERROR: Deprecated attributes found. They should not be used anymore' !important;
+}
+
+/* Inline frames without title attribute */
+iframe:not([title]):after{
+    content: 'ERROR: iframe has no title. ' !important;
+}
+
+
+/**
+ *     Image-related checks
+ */
+
+/* server-side image map. Yes these are sometimes still seen, if rarely */
+img[ismap]:after{
+    content: 'ERROR: Replace server-side image map' !important;
+}
+
+/* Images without alt attribute */
+img:not([alt]):after {
+    content: 'ERROR: All images must have alt attributes' !important;
+}
+
+area:not([alt]):after{
+    content: 'ERROR: Provide alt attribute for all areas of an image map' !important;
+}
+
+
+/* something that has a role of image but no alternative */
+*[role="img"]:not([aria-label]):after{
+    content: 'ERROR: Item has image role without an alternative' !important;
+}
+
+/* images without a source */
+img:not([src]):after,
+img[src=""]:after,
+img[src="#"]:after{
+    content: 'ERROR: image has no source' !important;
+}
+
+/**
+ *     Link-related checks
+ */
+
+/* Bad links, possibly relying on javascript to do something */
+a[href=""]:after, a[href="#"]:after, a:not([href]):after, a[href*=javascript\:]:after, a:not([href])[onclick]:after{
+    content: 'ERROR: links must have a valid hypertext reference' !important;
+}
+
+/** 
+ *     form-related checks
+ */
+
+/*
+	Legends
+*/
+fieldset > :not(legend):first-child:after,	/* no other element than a legend can be first child of a fieldset element */
+fieldset > legend:not(:first-child):after {	/* and a legend can't be anything else than first child of a fieldset element */
+    content: 'ERROR: fieldsets must have legends' !important;
+}
+
+
+
+/*
+	Input[type="image"] and their alt attribute
+	Note: adding :before or :after on this type of element won't work as expected. Maybe background-image encoded in base64?
+	@reference Technique for WCAG 2.0 H36: Using alt attributes on images used as submit buttons - http://www.w3.org/TR/WCAG-TECHS/H36.html
+	@reference Technique for WCAG 2.0 F65: Failure (...) due to omitting the alt attribute on (...) input elements of type "image" - http://www.w3.org/TR/WCAG-TECHS/F65.html
+*/
+input[type="image"][alt=""]:after,
+input[type="image"]:not([alt]):after {
+    content: 'ERROR: Image input requires alt attribute' !important;
+}
+
+
+/*
+	dir attribute
+*/
+/* If used, dir attribute only accepts 2 possible values */
+[dir]:not([dir="rtl"]):not([dir="ltr"]):after {
+    content: 'ERROR: dir attribute has invalid value' !important;	
+}
+
+/* empty? */
+title:empty:after {
+	content: 'ERROR: title element is empty' !important;
+}
+
+
+/* Implicit headings */
+p b:only-child:after, p strong:only-child:after{
+    content: 'ERROR: Should this bold text be a heading?' !important;
+}
+
+
+/* bullet type should be declared in CSS */
+ol[type]:after, ul[type]:after{
+    content: 'ERROR: Bullet type should be declared in CSS' !important;
+}
+
+/*
+	Meta refresh?
+	@source CSS selector from Opquast Checklist Accessibility First step https://checklists.opquast.com/en/accessibilityfirststep/
+	@reference Technique for WCAG 2.0 F40: Failure (...) due to using meta redirect with a time limit - http://www.w3.org/TR/WCAG-TECHS/F40.html
+*/
+meta[http-equiv=refresh]:after {
+    content: 'ERROR: Replace meta refresh' !important;
+}
+
+
+/*
+	Lang attribute on html element
+	@reference Technique for WCAG 2.0 H57: Using language attributes on the html element  - http://www.w3.org/TR/WCAG-TECHS/F40.html
+*/
+
+html:not([lang]):after{
+	content: 'ERROR: HTML element requires lang attribute' !important;
+}
+
+
+
+/* Accesskey is a bad idea. 
+ * @reference Old discussion but still hits on salient points http://www.cs.tut.fi/~jkorpela/forms/accesskey.html */
+*[accesskey]:after{
+    content: 'ERROR: Accesskey is a bad idea' !important;
+}
+
+
+/**
+ *     TABLE RELATED CHECKS
+ */
+
+/* Empty Header Cells */
+th:empty:after {
+    content: 'ERROR: replace empty TH element with TD' !important;
+}
+
+/* test for nested table */
+th > table:after, td > table:after, body > table:first-child:after, table table:after{
+    content: 'ERROR: nested table found. Is this a layout table?' !important;
+}
+
+
+
+/* only one TR in the table. Is that a layout table? */ 
+table > tr:only-child:after, 
+table > tbody > tr:only-child:after {
+    content: 'ERROR:  only one TR in this table. Is this a layout table?' !important;
+}
+
+/* Deprecated attributes on table */
+table[align]:after,
+table[bgcolor]:after,
+table[border]:after,
+table[cellpadding]:after,
+table[cellspacing]:after,
+table[width]:after,
+td[width]:after,
+td[valign]:after
+{
+    content: 'ERROR: Deprecated markup in table' !important;
+}
+
+
+/**
+ *     List-related issues
+ */
+ol > *:not(li):after,
+ul > *:not(li):after {
+    content: 'ERROR: List markup invalid' !important;
+}
+
+dl > *:not(dt):not(dd):after {
+    content: 'ERROR: Definition list markup invalid' !important;
+}
+
+dt + *:not(dd):after {
+    content: 'ERROR: Definition must follow term' !important;
+}
