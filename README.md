@@ -1,6 +1,7 @@
 # CSSor
 
-A guide to maintainable UI architecture and user experience design patterns. Focus on clarity, consistency, and avoiding complex nesting or poor interaction patterns.
+A CSS Tool that shows CSS issues / best practices directly in the browser - just include the CSS file (code is LLM generated :)).
+Focus on clarity, consistency, and avoiding complex nesting or poor interaction patterns.
 
 ---
 
